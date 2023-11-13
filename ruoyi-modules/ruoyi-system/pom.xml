@@ -34,7 +34,28 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
         </dependency>
-        
+        <!--seata-->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
+            <exclusions>
+                <!-- 排除依赖 -->
+                <exclusion>
+                    <artifactId>seata-all</artifactId>
+                    <groupId>io.seata</groupId>
+                </exclusion>
+                <!-- 排除依赖seata-spring-boot-starter 不然或报错 SeataDataSourceBeanPostProcessor异常 -->
+                <exclusion>
+                    <groupId>io.seata</groupId>
+                    <artifactId>seata-spring-boot-starter</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- SpringCloud Alibaba Seata -->
+        <dependency>
+            <groupId>io.seata</groupId>
+            <artifactId>seata-spring-boot-starter</artifactId>
+        </dependency>
     	<!-- SpringBoot Actuator -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -96,5 +117,5 @@
             </plugin>
         </plugins>
     </build>
-   
+
 </project>

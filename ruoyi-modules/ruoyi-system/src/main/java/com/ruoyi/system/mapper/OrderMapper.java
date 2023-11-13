@@ -1,8 +1,10 @@
 package com.ruoyi.system.mapper;
 
-/**
- * @author ldf
- * @create 2023/8/25 16:02
- */
-public class OrderMapper {
+import com.ruoyi.system.domain.Order;
+
+public interface OrderMapper
+{
+    public void insert(Order order);
+
+    public void updateById(Order order);
 }

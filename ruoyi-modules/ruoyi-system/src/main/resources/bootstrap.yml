@@ -14,12 +14,67 @@ spring:
     nacos:
       discovery:
         # 服务注册地址
-        server-addr: 127.0.0.1:8848
+        server-addr: 101.34.45.104:8848
       config:
         # 配置中心地址
-        server-addr: 127.0.0.1:8848
-        # 配置文件格式
+        server-addr: 101.34.45.104:8848
+        # 配置  文件格式
         file-extension: yml
         # 共享配置
         shared-configs:
           - application-${spring.profiles.active}.${spring.cloud.nacos.config.file-extension}
+  redis:
+    host: localhost
+    port: 6379
+    password:
+  datasource:
+    druid:
+      stat-view-servlet:
+        enabled: true
+        loginUsername: admin
+        loginPassword: 123456
+    dynamic:
+      druid:
+        initial-size: 5
+        min-idle: 5
+        maxActive: 20
+        maxWait: 60000
+        timeBetweenEvictionRunsMillis: 60000
+        minEvictableIdleTimeMillis: 300000
+        validationQuery: SELECT 1 FROM DUAL
+        testWhileIdle: true
+        testOnBorrow: false
+        testOnReturn: false
+        poolPreparedStatements: true
+        maxPoolPreparedStatementPerConnectionSize: 20
+        filters: stat,wall,slf4j
+        connectionProperties: druid.stat.mergeSql\=true;druid.stat.slowSqlMillis\=5000
+      datasource:
+        # 主库数据源
+        master:
+          driver-class-name: com.mysql.cj.jdbc.Driver
+          url: jdbc:mysql://101.34.45.104:3306/ry-cloud?useUnicode=true&characterEncoding=utf8  &zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+          username: root
+          password: password
+
+# seata配置
+seata:
+  enabled: true
+  # Seata 应用编号，默认为 ${spring.application.name}
+  application-id: ${spring.application.name}
+  # Seata 事务组编号，用于 TC 集群名
+  tx-service-group: ${spring.application.name}-group
+  # 关闭自动代理
+  enable-auto-data-source-proxy: false
+  # 服务配置项
+  service:
+    # 虚拟组和分组的映射
+    vgroup-mapping:
+      ruoyi-system-group: default
+    # 分组和 Seata 服务的映射
+    grouplist:
+      default: 101.34.45.104:8091
+  config:
+    type: file
+  registry:
+    type: file

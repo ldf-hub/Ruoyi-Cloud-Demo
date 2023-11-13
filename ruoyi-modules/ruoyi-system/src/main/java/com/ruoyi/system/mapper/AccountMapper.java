@@ -1,8 +1,10 @@
 package com.ruoyi.system.mapper;
 
-/**
- * @author ldf
- * @create 2023/8/25 16:01
- */
-public class AccountMapper {
+import com.ruoyi.system.domain.Account;
+
+public interface AccountMapper
+{
+    public Account selectById(Long userId);
+
+    public void updateById(Account account);
 }

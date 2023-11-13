@@ -1,8 +1,10 @@
 package com.ruoyi.system.mapper;
 
-/**
- * @author ldf
- * @create 2023/8/25 16:02
- */
-public class ProductMapper {
+import com.ruoyi.system.domain.Product;
+
+public interface ProductMapper
+{
+    public Product selectById(Long productId);
+
+    public void updateById(Product product);
 }
